@@ -240,7 +240,7 @@ with col2:
     
     st.markdown("### Detail Panjang Gelombang")
     st.info(f"Mode: {light_mode}")
-    t.info(f"Nilai: {wl_label}")
+    t.info(f"\nNilai: {wl_label}")
     
     if advanced_mode:
         st.markdown("### Parameter Larutan")
