@@ -248,8 +248,14 @@ with col2:
     
     if advanced_mode:
         st.markdown("### Parameter Larutan")
-        st.write(f"**Rotasi Optik:** {specific_rotation * path_length * concentration:.2f}°")
-        st.write(f"**Konsentrasi:** {concentration} g/mL")
+        st.markdown(f"""
+            <div class="info-box">
+                <strong>Rotasi Optik:</strong> {specific_rotation * path_length * concentration:.2f}°<br>
+                <strong>Konsentrasi:</strong> {concentration} g/mL<br>
+                <strong>Panjang Sel:</strong> {path_length} dm<br>
+                <strong>Rotasi Spesifik [α]:</strong> {specific_rotation}°·mL/(g·dm)
+            </div>
+        """, unsafe_allow_html=True)
 
 # --- TABEL DATA ---
 st.markdown("<div class='card-container'><div class='card-title'>Tabel Data Intensitas per Tahap</div></div>", unsafe_allow_html=True)
