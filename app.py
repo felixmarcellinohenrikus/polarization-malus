@@ -25,7 +25,7 @@ st.markdown("""
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     .header-title {
-        font-size: 24px;
+        font-size: 32px;
         font-weight: bold;
         margin: 0;
     }
@@ -63,13 +63,22 @@ st.markdown("""
         margin-top: 50px;
         background-color: #f9f9f9;
     }
+    
+    /* Info Box */
+    .info-box {
+        background-color: #e3f2fd;
+        border-left: 4px solid #006994;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
     </style>
 """, unsafe_allow_html=True)
 
 # --- HEADER ---
 st.markdown("""
     <div class="header-container">
-        <p class="header-title">Simulasi Polarisasi dengan Hukum Malus</p>
+        <h1 class="header-title">Simulasi Polarisasi dengan Hukum Malus</h1>
         <p class="header-subtitle">Dikembangkan oleh Felix Marcellino Henrikus, S.Si.</p>
         <p class="header-subtitle">Program Studi Magister Sains Data, UKSW Salatiga</p>
         <p class="header-subtitle">Untuk digunakan dalam pembelajaran Optika Gelombang di S1 Fisika, UKSW Salatiga</p>
@@ -86,7 +95,7 @@ with st.sidebar:
     )
     
     if source_type == "Cahaya Terpolarisasi":
-        source_angle = st.slider("Sudut Polarisasi Sumber (derajat)", 0, 359, 0)
+        source_angle = st.number_input("Sudut Polarisasi Sumber (derajat)", 0, 359, 0)
     else:
         source_angle = 0  # Tidak relevan untuk tak terpolarisasi
         
@@ -122,12 +131,29 @@ with st.sidebar:
 
 st.markdown("<div class='card-container'><div class='card-title'>Parameter Sudut Polaroid</div></div>", unsafe_allow_html=True)
 
-# Input sudut untuk setiap polaroid
+# Informasi sistem koordinat sudut
+st.markdown("""
+    <div class="info-box">
+        <strong>Informasi Sistem Koordinat:</strong><br>
+        • Sudut 0° mengarah ke <strong>vertikal atas</strong><br>
+        • Peningkatan sudut berputar <strong>searah jarum jam</strong><br>
+        • Rentang sudut: 0° - 359°
+    </div>
+""", unsafe_allow_html=True)
+
+# Input sudut untuk setiap polaroid menggunakan number input
 angles = []
 cols = st.columns(n_polarizers)
 for i in range(n_polarizers):
     with cols[i]:
-        angle = st.slider(f"Polaroid {i+1} (θ₍{i+1}₎)", 0, 359, 0 if i == 0 else 90, key=f"p{i}")
+        angle = st.number_input(
+            f"Polaroid {i+1} θ{i+1}",
+            min_value=0,
+            max_value=359,
+            value=0 if i == 0 else 90,
+            step=1,
+            key=f"p{i}"
+        )
         angles.append(angle)
 
 # Perhitungan Intensitas
@@ -213,7 +239,7 @@ with col2:
     st.metric(label="Transmitansi Total", value=f"{(intensities[-1]/I0)*100:.2f} %")
     
     st.markdown("### Detail Panjang Gelombang")
-    st.info(f"Mode: {light_mode}\nNilai: {wl_label}")
+    st.info(f"Mode: {light_mode}\\nNilai: {wl_label}")
     
     if advanced_mode:
         st.markdown("### Parameter Larutan")
@@ -227,6 +253,6 @@ st.dataframe(df.style.format({"Intensitas": "{:.2f}", "Sudut Efektif": "{:.1f}°
 # --- FOOTER ---
 st.markdown("""
     <div class="footer">
-        copyright 2026 - Felix Marcellino Henrikus, S.Si. - UKSW Salatiga
+        copyright ©2026 - Felix Marcellino Henrikus, S.Si. - UKSW Salatiga
     </div>
 """, unsafe_allow_html=True)
