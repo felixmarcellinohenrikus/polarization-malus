@@ -239,8 +239,12 @@ with col2:
     st.metric(label="Transmitansi Total", value=f"{(intensities[-1]/I0)*100:.2f} %")
     
     st.markdown("### Detail Panjang Gelombang")
-    st.info(f"Mode: {light_mode}")
-    t.info(f"\nNilai: {wl_label}")
+    st.markdown(f"""
+    <div class="info-box">
+        <strong>Mode:</strong> {light_mode}<br>
+        <strong>Nilai:</strong> {wl_label}
+    </div>
+    """, unsafe_allow_html=True)
     
     if advanced_mode:
         st.markdown("### Parameter Larutan")
