@@ -238,7 +238,7 @@ with col2:
     st.metric(label="Intensitas Akhir", value=f"{intensities[-1]:.2f}")
     st.metric(label="Transmitansi Total", value=f"{(intensities[-1]/I0)*100:.2f} %")
     
-    st.markdown("### Detail Panjang Gelombang")
+    st.markdown("#### Detail Panjang Gelombang")
     st.markdown(f"""
     <div class="info-box">
         <strong>Mode:</strong> {light_mode}<br>
@@ -247,7 +247,7 @@ with col2:
     """, unsafe_allow_html=True)
     
     if advanced_mode:
-        st.markdown("### Parameter Larutan")
+        st.markdown("#### Parameter Larutan")
         st.markdown(f"""
             <div class="info-box">
                 <strong>Rotasi Optik:</strong> {specific_rotation * path_length * concentration:.2f}°<br>
