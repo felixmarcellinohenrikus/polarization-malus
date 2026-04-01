@@ -147,7 +147,7 @@ cols = st.columns(n_polarizers)
 for i in range(n_polarizers):
     with cols[i]:
         angle = st.number_input(
-            f"Polaroid {i+1} θ{i+1}",
+            f"Polaroid {i+1} (θ{i+1})",
             min_value=0,
             max_value=359,
             value=0 if i == 0 else 90,
@@ -234,12 +234,12 @@ with col1:
 with col2:
     st.markdown("<div class='card-container'><div class='card-title'>Hasil Pengukuran</div></div>", unsafe_allow_html=True)
     
-    st.metric(label="Intensitas Awal (I₀)", value=f"{I0:.2f}")
-    st.metric(label="Intensitas Akhir (Iₙ)", value=f"{intensities[-1]:.2f}")
+    st.metric(label="Intensitas Awal", value=f"{I0:.2f}")
+    st.metric(label="Intensitas Akhir", value=f"{intensities[-1]:.2f}")
     st.metric(label="Transmitansi Total", value=f"{(intensities[-1]/I0)*100:.2f} %")
     
     st.markdown("### Detail Panjang Gelombang")
-    st.info(f"Mode: {light_mode}\\nNilai: {wl_label}")
+    st.info(f"Mode: {light_mode}\nNilai: {wl_label}")
     
     if advanced_mode:
         st.markdown("### Parameter Larutan")
